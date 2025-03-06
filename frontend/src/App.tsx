@@ -2,13 +2,16 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import Dashboard from './components/Dashboard';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
+    <>
+      {/* The top navbar with brand & theme toggles */}
       <NavBar />
+
+      {/* The main dashboard layout (sidebar + content) */}
       <Dashboard />
-    </div>
+    </>
   );
-};
+}
 
 export default App;

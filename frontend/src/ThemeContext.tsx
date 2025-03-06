@@ -15,14 +15,11 @@ const ThemeContext = createContext<ThemeContextProps>({
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('system');
 
-  // Detect system preference if user sets theme to "system"
   useEffect(() => {
+    // Decide whether to force 'dark' / 'light' or follow OS preference
     if (theme === 'system') {
       const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute(
-        'data-theme',
-        isDarkMode ? 'dark' : 'light'
-      );
+      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     } else {
       document.documentElement.setAttribute('data-theme', theme);
     }
@@ -35,5 +32,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
-// A convenient custom hook:
 export const useTheme = () => useContext(ThemeContext);
